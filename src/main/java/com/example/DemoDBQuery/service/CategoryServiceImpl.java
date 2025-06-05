@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Collections;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
@@ -21,11 +23,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public List<Category> getAllCategories() {
-        if(categoryRepository.findAll()!= null) {
-            return categoryRepository.findAll();
-        }
-        return null;
-
+        List<Category> categories = categoryRepository.findAll();
+        return categories == null ? Collections.emptyList() : categories;
     }
 
     @Override
@@ -39,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category findCategoryById(long categoryId) {
-        return categoryRepository.findById(categoryId).orElse(null);
+    public Optional<Category> findCategoryById(long categoryId) {
+        return categoryRepository.findById(categoryId);
     }
 }

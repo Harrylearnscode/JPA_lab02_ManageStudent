@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface SubjectService{
@@ -12,6 +13,6 @@ public interface SubjectService{
     List<Subjects> findAll();
     void delete(long subjectCode);
     void update(Subjects subject);
-    Subjects find(long subjectCode);
+    Optional<Subjects> find(long subjectCode);
 
 }

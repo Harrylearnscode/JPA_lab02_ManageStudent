@@ -6,6 +6,8 @@ package com.example.DemoDBQuery.service;
     import org.springframework.stereotype.Service;
 
     import java.util.List;
+    import java.util.Optional;
+    import java.util.Collections;
 
     @Service
     public class SubjectServiceImpl implements SubjectService {
@@ -19,16 +21,14 @@ package com.example.DemoDBQuery.service;
 
         @Override
         public List<Subjects> findAll() {
-            return subjectRepository.findAll();
+            List<Subjects> subjects = subjectRepository.findAll();
+            return subjects == null ? Collections.emptyList() : subjects;
         }
 
         @Override
         public void delete(long subjectCode) {
             if (subjectRepository.existsById(subjectCode)) {
                 subjectRepository.deleteById(subjectCode);
-                System.out.println("Subject with code " + subjectCode + " deleted successfully.");
-            } else {
-                System.out.println("Subject with code " + subjectCode + " not found.");
             }
         }
 
@@ -36,14 +36,11 @@ package com.example.DemoDBQuery.service;
         public void update(Subjects subject) {
             if (subjectRepository.existsById(subject.getSubjectCode())) {
                 subjectRepository.save(subject);
-                System.out.println("Subject with code " + subject.getSubjectCode() + " updated successfully.");
-            } else {
-                System.out.println("Subject with code " + subject.getSubjectCode() + " not found.");
             }
         }
 
         @Override
-        public Subjects find(long subjectCode) {
-            return subjectRepository.findById(subjectCode).orElse(null);
+        public Optional<Subjects> find(long subjectCode) {
+            return subjectRepository.findById(subjectCode);
         }
     }
