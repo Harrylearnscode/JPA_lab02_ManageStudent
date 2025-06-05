@@ -9,22 +9,27 @@ import java.util.List;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Code;
+    private long Code;
+
     @Column(name = "name")
     private String Name;
+
     @Column(name = "username")
     private String Username;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "status")
     private boolean status;
+
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Subjects> subjects;
 
     public Student() {
     }
 
-    public Student(int code, String name, String username, String password, boolean status, List<Subjects> subjects) {
+    public Student(long code, String name, String username, String password, boolean status, List<Subjects> subjects) {
         Code = code;
         Name = name;
         Username = username;
@@ -48,11 +53,11 @@ public class Student {
         this.status = true;
     }
 
-    public int getCode() {
+    public long getCode() {
         return Code;
     }
 
-    public void setCode(int code) {
+    public void setCode(long code) {
         Code = code;
     }
 

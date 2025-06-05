@@ -5,28 +5,32 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "subjects")
 public class Subjects {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int subjectCode;
+    private long subjectCode;
+
     @Column(name = "subject_name")
     private String subjectName;
+
     @ManyToOne
     @JoinColumn(name = "student_code", nullable = false)
     private Student student;
+
     @ManyToMany
     @JoinTable(
         name = "subject_category",
         joinColumns = @JoinColumn(name = "subject_code"),
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+
     private List<Category> categories;
 
     public Subjects() {
     }
 
-    public Subjects(int subjectCode, String subjectName, Student student, List<Category> categories) {
+    public Subjects(long subjectCode, String subjectName, Student student, List<Category> categories) {
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
         this.student = student;
@@ -43,11 +47,11 @@ public class Subjects {
         this.subjectName = subjectName;
     }
 
-    public int getSubjectCode() {
+    public long getSubjectCode() {
         return subjectCode;
     }
 
-    public void setSubjectCode(int subjectCode) {
+    public void setSubjectCode(long subjectCode) {
         this.subjectCode = subjectCode;
     }
 

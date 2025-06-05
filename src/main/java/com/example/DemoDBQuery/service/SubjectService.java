@@ -10,8 +10,8 @@ import java.util.List;
 public interface SubjectService{
     void save(Subjects subject);
     List<Subjects> findAll();
-    void delete(int subjectCode);
+    void delete(long subjectCode);
     void update(Subjects subject);
-    Subjects find(int subjectCode);
+    Subjects find(long subjectCode);
 
 }

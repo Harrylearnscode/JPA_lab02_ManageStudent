@@ -5,16 +5,19 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
+
     @Column(name = "cat_name")
     private String catName;
+
     @Column(name = "url")
     private String url;
+
     @ManyToMany(mappedBy = "categories")
     private List<Subjects> subjects;
 

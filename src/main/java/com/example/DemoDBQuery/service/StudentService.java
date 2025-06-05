@@ -8,8 +8,8 @@ import java.util.List;
 @Service
 public interface StudentService {
     void save(Student student);
-    Student find(int studentId);
-    void delete(int studentId);
+    Student find(long studentId);
+    void delete(long studentId);
     void update(Student student);
     List<Student> findAll();
 }
