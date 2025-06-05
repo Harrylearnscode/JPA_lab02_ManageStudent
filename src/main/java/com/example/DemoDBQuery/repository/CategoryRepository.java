@@ -8,9 +8,4 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-//    public void save(Category category);
-//    public void delete(Long id);
-//    public Category find(Long id);
-//    public List<Category> findAll();
-//    public void update(Category category);
 }
